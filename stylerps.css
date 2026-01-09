@@ -1,0 +1,165 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+}
+
+.board
+{
+ max-height: 100px;
+ display: flex;
+ justify-content: space-between;
+ padding: 20px 80px 20px 80px;
+ 
+ background: #B38B72;
+background: linear-gradient(90deg,rgba(179, 139, 114, 1) 0%, rgba(237, 219, 183, 1) 50%, rgba(179, 139, 114, 1) 100%);
+border: 3px solid black;
+}
+
+.round {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     padding: 20px;
+
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+  backdrop-filter: blur(8px);           /* The "frosted" effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* A faint edge */
+  border-radius: 12px;
+}
+
+.score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 15px;
+
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+  backdrop-filter: blur(8px);           /* The "frosted" effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* A faint edge */
+  
+  border-radius: 12px;
+
+}
+
+.scorebox {
+     width: 80px;
+   display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    border:0.1px solid black;
+    border-radius: 12px;
+}
+    
+
+
+.container {
+display: flex;
+flex-wrap: wrap;
+height: 100vh;
+justify-content: space-between;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+   
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 50px 20px;
+  
+    background: #ffc4dd;
+background: radial-gradient(circle,rgba(255, 196, 221, 1) 0%, rgba(245, 255, 227, 1) 100%);
+   border: 3px solid black;
+} 
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 30px;
+    background-color: none;
+}
+
+.userbutton {
+    background: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    border: none;
+}
+ 
+
+.selected-button, #displayCompChoice {
+    /* Use !important to force the browser to prioritize this style */
+    border: 3px solid #634c01fb !important; 
+    border-radius: 15px;       
+    transform: scale(1.1); 
+    transition: all 0.2s ease;
+    background-color: rgba(166, 210, 240, 0.959) !important; 
+    padding: 10px; 
+}
+
+img {
+    max-width: 130px;
+    height: auto;
+    width: auto;
+    min-width: 0;
+  min-height: 0;
+  pointer-events: none;
+}
+
+
+.computer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+     align-items: center;
+    justify-content: center;
+    gap: 60px;
+
+    border: 3px solid black;
+    background: #ffc4dd;
+background: radial-gradient(circle,rgba(255, 196, 221, 1) 0%, rgba(245, 255, 227, 1) 100%);
+} 
+
+
+
+#messagedisplay {
+    font-size: 40px;
+    font-weight: bolder;
+    font-style: oblique;
+}
+
+#playagainbutton {
+    font-size: 18px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+  backdrop-filter: blur(8px);           /* The "frosted" effect */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* A faint edge */
+  border-radius: 12px;
+}
+
+
+
+
+#displayCompChoice img {
+    height: auto;
+    width: 130px;
+   
+}

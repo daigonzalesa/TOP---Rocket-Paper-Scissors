@@ -1,90 +1,125 @@
 
 
+
+let userScore = 0;
+let compScore = 0;
+let countround= 0;
+const srcImage = ["rock.png", "paper.png", "scissors.png"];
+
+const userScoreDisplay = document.querySelector('#user-score');
+const compScoreDisplay = document.querySelector('#computer-score');
+const score = document.querySelector('#round');
+const buttons=document.querySelectorAll('.userbutton');
+const compContainer = document.querySelector('#displayCompChoice') ;
+const playagain = document.querySelector('#playagainbutton');
+const resultDisplay = document.querySelector('#messagedisplay');
+
+function resetGame()
+{
+    countround = 0;
+    userScore = 0;
+    compScore = 0;
+    round.textContent = countround;
+    userScoreDisplay.textContent=userScore;
+    compScoreDisplay.textContent=compScore;
+    resultDisplay.textContent = 'ROCK PAPER SCISSORS';
+    compContainer.replaceChildren();
+     resultDisplay.style.color="black";
+
+    buttons.forEach(btn => btn.classList.remove('selected-button'));
+
+}
+
 function getComputerChoice () 
 {
     const rand = Math.floor (Math.random() * 3);
-    
-    if (rand == 0) {
-    return ("ROCK")
-    }
-    else if ( rand == 1 ) {
-    return ("PAPER")
-    }
-    else if ( rand == 2) {
-    return ("SCISSORS")
-    }
-
-    }
-/*console.log (getComputerChoice());*/
-
-
-function getHumanChoice (choice) {
-    choice = prompt("Rock, paper or scissors?");
-    return (choice.toUpperCase());
+    return rand;
+    /*0 is ROCK, 1 is PAPER, 2 is SCISSORS*/ 
 }
 
-/*console.log (getHumanChoice());*/
-
-let humanScore = 0;
-let computerScore = 0;
-
-function playRound (CC, HC) 
+function displayComputerChoice (compChoice)
 {
-  if (CC =="ROCK") 
+       
+    const compImage=document.createElement('img');
+    compImage.src=srcImage[compChoice];
+    compContainer.replaceChildren(compImage);
+}
+
+
+playagain.addEventListener('click',resetGame);
+
+buttons.forEach ((button) => {
+
+button.addEventListener('click', (e) => {
+
+    buttons.forEach(btn => btn.classList.remove('selected-button'));
+    let compChoice = getComputerChoice(); 
+    let userChoice = Number(e.currentTarget.dataset.value);
+    e.currentTarget.classList.add('selected-button');
+    let difference=Math.abs(compChoice-userChoice);
+    
+    
+    countround++;
+
+    if (countround>5) 
+        {
+        resultDisplay.textContent ='The Game is Over. Click Play Again to restart.';
+        return;
+        }
+
+    if (countround<=5)
     {
-    if (HC =="SCISSORS") 
+        if (difference==1) 
         {
-        return (computerScore++) 
-        } 
-    else if (HC =="PAPER") 
+        if (userChoice>compChoice) 
+            {
+            userScore++;
+            } else 
+            {
+            compScore++;
+            }
+
+        }
+        else if (difference==2)
         {
-        return (humanScore++) 
-        } 
-    }
+         if (userChoice>compChoice) 
+            {
+            compScore++;
+            } else 
+                {
+            userScore++;
+            }
+        };
+        }
+ 
+    round.textContent = countround;
+    userScoreDisplay.textContent=userScore;
+     compScoreDisplay.textContent=compScore;    
+    displayComputerChoice (compChoice);
 
-  if (CC =="SCISSORS") 
-    {
-    if ( HC =="PAPER") 
+    if (countround==5)
         {
-        return (computerScore++) 
-        } 
-    else if ( HC =="ROCK") 
+        
+    if (userScore>compScore)
         {
-        humanScore++ 
+    resultDisplay.textContent=('Congratulations! You won!!');
+    resultDisplay.style.color="darkgreen";
         } 
-    }
-
-    if ( CC =="PAPER") 
-    {
-    if ( HC =="ROCK") 
+        else if (compScore>userScore) 
         {
-        computerScore++ 
-        } 
-    else if ( HC =="SCISSORS") 
+    resultDisplay.textContent=('Upsiii, you lost...Try again!.');
+    resultDisplay.style.color="darkred";
+        } else if (compScore==userScore)
         {
-        humanScore++ 
-        } 
-    }
-
-}
-
-
-for (let i=0; i<5; i++) {
-    let CC = getComputerChoice();
-    let HC = getHumanChoice();
-
-    playRound(CC, HC);
+           resultDisplay.textContent=('a tie! Try again :)');
+        }
+     }
+       
+    });
+    
+    });
 
 
-    console.log (`You:${HC} vs me:${CC}. Score is ${humanScore}(you) vs ${computerScore}(me).`);
 
-}
 
-if (computerScore >= humanScore ) {
-    console.log (`FINAL SCORE: ${humanScore} vs ${computerScore}. I WON!`)
-}
-else if (computerScore <= humanScore) {
-    console.log (`FINAL SCORE: ${humanScore} vs ${computerScore}. YOU WON!`)
-}
-else { console.log (`FINAL SCORE: ${humanScore} vs ${computerScore}. empatamos`) 
- }
+ 

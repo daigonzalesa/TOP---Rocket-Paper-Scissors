@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Papper Scissor </title>
-    <script src="Myjs.js"></script>
+     <link rel="stylesheet" href="stylerps.css">
+    
 </head>
 <body>
+
+    <div class="board">
+
+    <div class="round">
+    <h3>ROUND:</h3>
+     <p id="round">0</p>
+     </div>
+
+    <div class="score">
+     <h3>SCORE:</h3>
+    <div class="scorebox">
+        You <span id="user-score">0</span>
+    </div>
+    <div class="scorebox">
+        Computer <span id="computer-score">0</span>
+    </div> 
+    </div>
+
+    </div>
     
+    <div class="container">
+
+    <div class="user">
+        <h1>Choose your move: </h1>
+    <div class="buttons">
+    <button class="userbutton" data-value="0">Rock
+    <img src="rock.png">
+    </button>
+    <button class="userbutton" data-value="1">Paper
+    <img src="paper.png">
+    </button>
+    <button class="userbutton" data-value="2">Scissors
+    <img src="scissors.png">
+    </button>
+    </div>
+    </div>
+    
+    <div class="computer">
+        <h1>Computer:</h1>
+        <div id="displayCompChoice">
+        </div>
+    </div>
+
+    </div>
+
+    <div class="board">
+    <div id="messagedisplay">
+        ROCK PAPER SCISSORS
+        </div>
+    <button id="playagainbutton">Play again/ Reload</button>
+    </div>
+        
+    
+
+    <script src="Myjs.js"></script>
 </body>
 </html>
