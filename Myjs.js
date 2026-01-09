@@ -14,20 +14,14 @@ const compContainer = document.querySelector('#displayCompChoice') ;
 const playagain = document.querySelector('#playagainbutton');
 const resultDisplay = document.querySelector('#messagedisplay');
 
-function resetGame()
-{
-    countround = 0;
-    userScore = 0;
-    compScore = 0;
-    round.textContent = countround;
-    userScoreDisplay.textContent=userScore;
-    compScoreDisplay.textContent=compScore;
-    resultDisplay.textContent = 'ROCK PAPER SCISSORS';
-    compContainer.replaceChildren();
-     resultDisplay.style.color="black";
 
-    buttons.forEach(btn => btn.classList.remove('selected-button'));
+function removeStyleButton () {
+ buttons.forEach(btn => btn.classList.remove('selected-button'));
+}
 
+function addStyleButton (e) {
+    removeStyleButton();
+  e.currentTarget.classList.add('selected-button');
 }
 
 function getComputerChoice () 
@@ -39,37 +33,28 @@ function getComputerChoice ()
 
 function displayComputerChoice (compChoice)
 {
-       
+     
     const compImage=document.createElement('img');
     compImage.src=srcImage[compChoice];
     compContainer.replaceChildren(compImage);
 }
 
+function displayBothChoices (e) {
 
-playagain.addEventListener('click',resetGame);
-
-buttons.forEach ((button) => {
-
-button.addEventListener('click', (e) => {
-
-    buttons.forEach(btn => btn.classList.remove('selected-button'));
     let compChoice = getComputerChoice(); 
+    displayComputerChoice(compChoice);
     let userChoice = Number(e.currentTarget.dataset.value);
-    e.currentTarget.classList.add('selected-button');
-    let difference=Math.abs(compChoice-userChoice);
-    
-    
-    countround++;
+    addStyleButton(e);
+    return [compChoice, userChoice];
+}
 
-    if (countround>5) 
-        {
-        resultDisplay.textContent ='The Game is Over. Click Play Again to restart.';
-        return;
-        }
 
-    if (countround<=5)
-    {
-        if (difference==1) 
+function calculateScores (e) {
+  
+  let [compChoice, userChoice] = displayBothChoices(e);
+  let difference=Math.abs(userChoice-compChoice);
+
+  if (difference==1) 
         {
         if (userChoice>compChoice) 
             {
@@ -89,18 +74,21 @@ button.addEventListener('click', (e) => {
                 {
             userScore++;
             }
-        };
         }
- 
+
+}
+
+function displayScores () {
     round.textContent = countround;
     userScoreDisplay.textContent=userScore;
-     compScoreDisplay.textContent=compScore;    
-    displayComputerChoice (compChoice);
+    compScoreDisplay.textContent=compScore;    
+   
+}
 
-    if (countround==5)
-        {
-        
-    if (userScore>compScore)
+
+function displayFinalResult () {
+
+if (userScore>compScore)
         {
     resultDisplay.textContent=('Congratulations! You won!!');
     resultDisplay.style.color="darkgreen";
@@ -113,11 +101,57 @@ button.addEventListener('click', (e) => {
         {
            resultDisplay.textContent=('a tie! Try again :)');
         }
-     }
-       
+}
+
+function resetGame()
+{
+    countround = 0;
+    userScore = 0;
+    compScore = 0;
+    round.textContent = countround;
+    userScoreDisplay.textContent=userScore;
+    compScoreDisplay.textContent=compScore;
+    resultDisplay.textContent = 'ROCK PAPER SCISSORS';
+    compContainer.replaceChildren();
+     resultDisplay.style.color="black";
+    removeStyleButton ();
+
+}
+
+
+function displayPlayAgainText () {
+    
+    resultDisplay.textContent ='The Game is Over. Click Play Again to restart.';
+
+}
+
+playagain.addEventListener('click',resetGame);
+
+buttons.forEach ((button) => {
+
+    button.addEventListener('click', (e) => {
+    
+        countround++;
+
+
+        if (countround<=5) {
+            calculateScores(e);
+            displayScores();
+            
+        }
+
+        if (countround==5) {
+            displayFinalResult();
+        
+        }
+
+        if (countround>5) {
+            displayPlayAgainText();
+        }
+        
     });
     
-    });
+});
 
 
 
