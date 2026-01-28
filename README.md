@@ -28,6 +28,3 @@ This was my first deep dive into "making things move" with code. I learned:
 * **Clean Code:** Using functions to keep the game logic organized and reusable.
 * **Problem Solving:** Debugging the logic for determining round winners and stopping the game once someone reaches 5 points.
 
-## 🏁 How to Run Locally
-1. Clone the repo: `git clone https://github.com/daigonzalesa/rock-paper-scissors.git`
-2. Open `index.html` in your browser.
