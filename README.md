@@ -2,7 +2,7 @@
 
 An interactive, browser-based version of the classic Rock Paper Scissors game. This project focuses on JavaScript logic, event listeners, and dynamic UI updates.
 
-**[🔗 Live Demo](https://daigonzalesa.github.io/rock-paper-scissors/)
+**[🔗 Live Demo] https://daigonzalesa.github.io/TOP---Rocket-Paper-Scissors/
 
 ## 🎮 How to Play
 1. Select your weapon: Rock, Paper, or Scissors.
